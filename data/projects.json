@@ -1,0 +1,20 @@
+[
+  {
+    "name": "AI Daily Briefing Pipeline",
+    "description": "A source-grounded AI frontier briefing pipeline with extraction, verification, evidence links, and polished publication output.",
+    "url": "https://github.com/th9rain/ai-daily-briefing",
+    "featured": true
+  },
+  {
+    "name": "Sentiment Monitoring Pipeline",
+    "description": "A multi-source sentiment monitoring system with filtering, LLM tagging, reporting, database integration, and alerting.",
+    "url": "https://github.com/th9rain/sentiment-monitoring",
+    "featured": true
+  },
+  {
+    "name": "GitHub Profile Maintainer",
+    "description": "A reusable system for keeping a GitHub profile aligned with real work, public identity, and ongoing projects.",
+    "url": "https://github.com/th9rain/github-profile-maintainer",
+    "featured": true
+  }
+]
