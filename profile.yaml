@@ -1,0 +1,19 @@
+name: Ray
+headline: Building practical AI workflows, reusable skills, and automation systems
+summary: >-
+  I build practical AI systems that turn recurring work into reusable workflows, tools,
+  and operating pipelines. My focus is on making messy real-world work more structured,
+  repeatable, and actually useful in production.
+focus:
+  - AI workflow systems
+  - Agent tooling
+  - Automation
+  - Knowledge operations
+links:
+  github: https://github.com/th9rain
+featured_sections:
+  - now
+  - projects
+  - skills
+  - writing
+contact_note: GitHub is where I document the systems, skills, and projects I’m building over time.
