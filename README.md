@@ -23,4 +23,4 @@ Python · LLM Applications · Agents · Computer Vision · Data Analysis · Auto
 
 - Public repos: 4
 - Total stars: 4
-- Highlight repo: **ultrareview** - Recreate Claude Code鈥搒tyle multi-agent ultrareview with a self-hosted skill workflow. ([link](https://github.com/th9rain/ultrareview))
+- Highlight repo: **ultrareview** - Recreate Claude Code-style multi-agent ultrareview with a self-hosted skill workflow. ([link](https://github.com/th9rain/ultrareview))
