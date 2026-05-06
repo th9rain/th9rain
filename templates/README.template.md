@@ -4,6 +4,8 @@
 
 {{summary}}
 
+{{summary_zh_section}}
+
 ## What I'm focused on
 
 {{now}}

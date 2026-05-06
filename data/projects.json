@@ -1,14 +1,8 @@
 [
   {
-    "name": "AI Daily Briefing Pipeline",
-    "description": "A source-grounded AI frontier briefing pipeline with extraction, verification, evidence links, and polished publication output.",
-    "url": "https://github.com/th9rain/ai-daily-briefing",
-    "featured": true
-  },
-  {
-    "name": "Sentiment Monitoring Pipeline",
-    "description": "A multi-source sentiment monitoring system with filtering, LLM tagging, reporting, database integration, and alerting.",
-    "url": "https://github.com/th9rain/sentiment-monitoring",
+    "name": "idea2web",
+    "description": "A reusable skill for turning a one-line product idea into a practical full-stack web app scaffold.",
+    "url": "https://github.com/th9rain/idea2web",
     "featured": true
   },
   {

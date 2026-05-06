@@ -4,16 +4,20 @@ summary: >-
   I build practical AI systems that turn recurring work into reusable workflows, tools,
   and operating pipelines. My focus is on making messy real-world work more structured,
   repeatable, and actually useful in production.
+summary_zh: >-
+  我专注于把重复工作沉淀为可复用的 AI 工作流、工具和自动化系统，
+  重点是让真实世界里零散而繁琐的流程变得更结构化、更可复用，
+  并且能真正落到生产环境里发挥价值。
 focus:
   - AI workflow systems
   - Agent tooling
   - Automation
   - Knowledge operations
 links:
-  github: https://github.com/th9rain
+  GitHub: https://github.com/th9rain
 featured_sections:
   - now
   - projects
   - skills
   - writing
-contact_note: GitHub is where I document the systems, skills, and projects I’m building over time.
+contact_note: GitHub is where I document the systems, skills, and projects I'm building over time.

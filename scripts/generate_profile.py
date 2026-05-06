@@ -13,41 +13,73 @@ def load_json(path):
 
 
 def load_yaml_like(path):
+    lines = Path(path).read_text(encoding='utf-8').splitlines()
     data = {}
-    current_key = None
-    block_mode = False
-    block_lines = []
-    for raw in Path(path).read_text(encoding='utf-8').splitlines():
-        line = raw.rstrip('\n')
-        if not line.strip() or line.lstrip().startswith('#'):
+    index = 0
+
+    while index < len(lines):
+        raw = lines[index]
+        if not raw.strip() or raw.lstrip().startswith('#'):
+            index += 1
             continue
-        if block_mode:
-            if line.startswith('  ') or line == '':
-                block_lines.append(line[2:] if line.startswith('  ') else '')
-                continue
-            data[current_key] = '\n'.join(block_lines).strip()
-            block_mode = False
+        if raw.startswith(' '):
+            index += 1
+            continue
+        if ':' not in raw:
+            index += 1
+            continue
+
+        key, rest = raw.split(':', 1)
+        key = key.strip()
+        rest = rest.strip()
+
+        if rest in {'|-', '>-', '|', '>'}:
             block_lines = []
-            current_key = None
-        if line.endswith(': |-') or line.endswith(': >-') or line.endswith(': |') or line.endswith(': >'):
-            current_key = line.split(':', 1)[0]
-            block_mode = True
-        elif ': ' in line:
-            key, value = line.split(': ', 1)
-            if value.startswith('[') and value.endswith(']'):
-                try:
-                    data[key] = json.loads(value.replace("'", '"'))
-                except Exception:
-                    data[key] = value
+            index += 1
+            while index < len(lines):
+                line = lines[index]
+                if not line.strip():
+                    block_lines.append('')
+                    index += 1
+                    continue
+                if not line.startswith('  '):
+                    break
+                block_lines.append(line[2:])
+                index += 1
+            data[key] = '\n'.join(block_lines).strip()
+            continue
+
+        if rest == '':
+            mapping = {}
+            items = []
+            index += 1
+            while index < len(lines):
+                line = lines[index]
+                if not line.strip():
+                    index += 1
+                    continue
+                if not line.startswith('  '):
+                    break
+                stripped = line[2:]
+                if stripped.startswith('- '):
+                    items.append(stripped[2:])
+                elif ': ' in stripped:
+                    subkey, subvalue = stripped.split(': ', 1)
+                    mapping[subkey.strip()] = subvalue.strip()
+                index += 1
+            if mapping and not items:
+                data[key] = mapping
+            elif items and not mapping:
+                data[key] = items
+            elif mapping:
+                data[key] = mapping
             else:
-                data[key] = value
-        elif line.endswith(':'):
-            current_key = line[:-1]
-            data[current_key] = []
-        elif line.lstrip().startswith('- ') and isinstance(data.get(current_key), list):
-            data[current_key].append(line.lstrip()[2:])
-    if block_mode and current_key is not None:
-        data[current_key] = '\n'.join(block_lines).strip()
+                data[key] = {}
+            continue
+
+        data[key] = rest
+        index += 1
+
     return data
 
 
@@ -98,6 +130,7 @@ def main():
         'name': profile.get('name', 'Your Name'),
         'headline': profile.get('headline', 'Add a clear headline'),
         'summary': profile.get('summary', 'Add a short summary.'),
+        'summary_zh_section': '',
         'now': now,
         'projects': render_list(projects, 'name', 'description'),
         'skills': render_list(skills, 'name', 'description'),
@@ -105,6 +138,10 @@ def main():
         'links': render_links(profile.get('links', {})),
         'contact_note': profile.get('contact_note', ''),
     }
+
+    summary_zh = profile.get('summary_zh', '').strip()
+    if summary_zh:
+        replacements['summary_zh_section'] = f'## 中文简介\n\n{summary_zh}'
 
     content = template
     for key, value in replacements.items():

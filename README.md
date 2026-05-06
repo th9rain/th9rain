@@ -1,12 +1,16 @@
 # Ray
 
-<!-- profile-refresh: 2026-05-06 -->
-
 > Building practical AI workflows, reusable skills, and automation systems
 
 I build practical AI systems that turn recurring work into reusable workflows, tools,
 and operating pipelines. My focus is on making messy real-world work more structured,
 repeatable, and actually useful in production.
+
+## 中文简介
+
+我专注于把重复工作沉淀为可复用的 AI 工作流、工具和自动化系统，
+重点是让真实世界里零散而繁琐的流程变得更结构化、更可复用，
+并且能真正落到生产环境里发挥价值。
 
 ## What I'm focused on
 
@@ -24,10 +28,10 @@ Currently focused on turning repeated work into reusable AI systems: workflow pa
 
 ## Writing
 
-- **Writing and notes are coming soon**: I’m still organizing what to publish publicly. This section will gradually collect practical write-ups around AI workflows, automation, and reusable systems.
+- **Writing and notes are coming soon**: I'm still organizing what to publish publicly. This section will gradually collect practical write-ups around AI workflows, automation, and reusable systems.
 
 ## Links
 
-- GitHub: https://github.com/th9rain
+- **GitHub**: https://github.com/th9rain
 
-GitHub is where I document the systems, skills, and projects I’m building over time.
+GitHub is where I document the systems, skills, and projects I'm building over time.

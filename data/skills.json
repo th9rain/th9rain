@@ -1,7 +1,7 @@
 [
   {
     "name": "idea2web",
-    "description": "Turn a one-line product idea into a practical full-stack web app with a clear scaffold and delivery path.",
+    "description": "Product-to-build workflow skill for generating practical full-stack web apps from a short prompt.",
     "url": "https://github.com/th9rain/idea2web",
     "featured": true
   },
@@ -9,12 +9,6 @@
     "name": "github-profile-maintainer",
     "description": "Maintain a GitHub profile README and supporting pages from structured source data.",
     "url": "https://github.com/th9rain/github-profile-maintainer",
-    "featured": true
-  },
-  {
-    "name": "ai-daily-briefing",
-    "description": "Generate a source-grounded daily AI frontier briefing with evidence-backed links and polished Markdown output.",
-    "url": "https://github.com/th9rain/ai-daily-briefing",
     "featured": true
   }
 ]
