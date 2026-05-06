@@ -97,43 +97,30 @@ def render_tech_stack(tech_stack):
     return 'TBD'
 
 
-def render_snapshot(snapshot):
-    if not isinstance(snapshot, dict) or not snapshot:
-        return '- Snapshot unavailable'
+def render_stats_cards(username):
+    username = (username or '').strip()
+    if not username:
+        return ''
 
-    lines = []
-    repo_count = snapshot.get('owned_repo_count')
-    total_stars = snapshot.get('total_stars')
-    top_repo = snapshot.get('top_repo') or {}
-
-    if repo_count is not None:
-        lines.append(f'- Public repos: {repo_count}')
-    if total_stars is not None:
-        lines.append(f'- Total stars: {total_stars}')
-
-    if top_repo.get('name'):
-        highlight = f"- Highlight repo: **{top_repo['name']}**"
-        description = (top_repo.get('description') or '').strip()
-        if description:
-            highlight += f' - {description}'
-        url = (top_repo.get('html_url') or '').strip()
-        if url:
-            highlight += f' ([link]({url}))'
-        lines.append(highlight)
-
-    return '\n'.join(lines) if lines else '- Snapshot unavailable'
+    stats = (
+        f"![GitHub stats](https://github-readme-stats.vercel.app/api"
+        f"?username={username}&show_icons=true&hide_border=true&rank_icon=github)"
+    )
+    langs = (
+        f"![Top languages](https://github-readme-stats.vercel.app/api/top-langs/"
+        f"?username={username}&layout=compact&hide_border=true)"
+    )
+    return f'{stats}\n\n{langs}'
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--profile', required=True)
-    parser.add_argument('--snapshot', required=False)
     parser.add_argument('--template', required=True)
     parser.add_argument('--output', required=True)
     args = parser.parse_args()
 
     profile = load_yaml_like(args.profile)
-    snapshot = load_json(args.snapshot) if args.snapshot else {}
     template = load_text(args.template)
 
     summary_zh = profile.get('summary_zh', '').strip()
@@ -143,7 +130,7 @@ def main():
         'summary': profile.get('summary', 'Add a short summary.'),
         'summary_zh_section': f'## 中文简介\n\n{summary_zh}' if summary_zh else '',
         'tech_stack': render_tech_stack(profile.get('tech_stack', [])),
-        'snapshot': render_snapshot(snapshot),
+        'stats_cards': render_stats_cards(profile.get('username', '')),
     }
 
     content = template

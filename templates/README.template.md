@@ -10,6 +10,6 @@
 
 {{tech_stack}}
 
-## GitHub Snapshot
+## GitHub
 
-{{snapshot}}
+{{stats_cards}}
