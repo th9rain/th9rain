@@ -9,7 +9,3 @@
 ## Tech
 
 {{tech_stack}}
-
-## GitHub
-
-{{stats_cards}}

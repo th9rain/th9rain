@@ -18,9 +18,3 @@ and intelligent systems that can actually run in production.
 ## Tech
 
 Python · LLM Applications · Agents · Computer Vision · Data Analysis · Automation · Backend Tooling · Knowledge Systems
-
-## GitHub
-
-![GitHub stats](https://github-readme-stats.vercel.app/api?username=th9rain&show_icons=true&hide_border=true&rank_icon=github)
-
-![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=th9rain&layout=compact&hide_border=true)

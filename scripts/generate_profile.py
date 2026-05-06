@@ -130,7 +130,6 @@ def main():
         'summary': profile.get('summary', 'Add a short summary.'),
         'summary_zh_section': f'## 中文简介\n\n{summary_zh}' if summary_zh else '',
         'tech_stack': render_tech_stack(profile.get('tech_stack', [])),
-        'stats_cards': render_stats_cards(profile.get('username', '')),
     }
 
     content = template
