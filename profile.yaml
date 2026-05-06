@@ -1,23 +1,23 @@
 name: Ray
-headline: Building practical AI workflows, reusable skills, and automation systems
+username: th9rain
+role: AI engineer at Li Auto.
 summary: >-
-  I build practical AI systems that turn recurring work into reusable workflows, tools,
-  and operating pipelines. My focus is on making messy real-world work more structured,
-  repeatable, and actually useful in production.
+  I work on practical AI systems spanning LLM applications, agent systems,
+  computer vision, data analysis, workflow automation, and internal knowledge platforms.
+  I care about turning complex real-world requirements into reliable tools, pipelines,
+  and intelligent systems that can actually run in production.
 summary_zh: >-
-  我专注于把重复工作沉淀为可复用的 AI 工作流、工具和自动化系统，
-  重点是让真实世界里零散而繁琐的流程变得更结构化、更可复用，
-  并且能真正落到生产环境里发挥价值。
-focus:
-  - AI workflow systems
-  - Agent tooling
+  我是 Ray，目前在理想汽车做 AI 工程相关工作。
+
+  主要关注 LLM 应用、Agent 系统、计算机视觉、数据分析、工作流自动化和知识平台。
+  更感兴趣的是把复杂的业务问题抽象成稳定可复用的工具、流程和智能系统，
+  并真正落到生产环境里。
+tech_stack:
+  - Python
+  - LLM Applications
+  - Agents
+  - Computer Vision
+  - Data Analysis
   - Automation
-  - Knowledge operations
-links:
-  GitHub: https://github.com/th9rain
-featured_sections:
-  - now
-  - projects
-  - skills
-  - writing
-contact_note: GitHub is where I document the systems, skills, and projects I'm building over time.
+  - Backend Tooling
+  - Knowledge Systems

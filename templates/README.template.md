@@ -1,29 +1,15 @@
 # {{name}}
 
-> {{headline}}
+{{role}}
 
 {{summary}}
 
 {{summary_zh_section}}
 
-## What I'm focused on
+## Tech
 
-{{now}}
+{{tech_stack}}
 
-## Selected Projects
+## GitHub Snapshot
 
-{{projects}}
-
-## Reusable Skills & Systems
-
-{{skills}}
-
-## Writing
-
-{{writing}}
-
-## Links
-
-{{links}}
-
-{{contact_note}}
+{{snapshot}}

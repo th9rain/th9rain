@@ -1,0 +1,48 @@
+name: Update Profile README
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'profile.yaml'
+      - 'templates/**'
+      - 'scripts/**'
+      - '.github/workflows/update-profile.yml'
+  schedule:
+    - cron: '0 3 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Refresh GitHub snapshot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/update_snapshot.py --username th9rain --output data/snapshot.json
+          python scripts/generate_profile.py --profile profile.yaml --snapshot data/snapshot.json --template templates/README.template.md --output README.md
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md data/snapshot.json
+          git commit -m "docs: refresh GitHub snapshot"
+          git push

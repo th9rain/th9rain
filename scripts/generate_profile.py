@@ -9,7 +9,13 @@ def load_text(path):
 
 
 def load_json(path):
-    return json.loads(load_text(path))
+    source = Path(path)
+    if not source.exists():
+        return {}
+    content = load_text(source)
+    if not content:
+        return {}
+    return json.loads(content)
 
 
 def load_yaml_like(path):
@@ -83,65 +89,62 @@ def load_yaml_like(path):
     return data
 
 
-def render_list(items, key_title='name', key_desc='description'):
-    featured = [x for x in items if x.get('featured', False)]
-    rows = featured if featured else items
-    if not rows:
-        return '- None yet'
-    rendered = []
-    for item in rows:
-        title = item.get(key_title) or item.get('title') or 'Untitled'
-        desc = item.get(key_desc) or item.get('summary') or ''
-        url = item.get('url', '').strip()
-        line = f"- **{title}**"
-        if desc:
-            line += f": {desc}"
+def render_tech_stack(tech_stack):
+    if isinstance(tech_stack, list) and tech_stack:
+        return ' · '.join(item.strip() for item in tech_stack if item and item.strip())
+    if isinstance(tech_stack, str) and tech_stack.strip():
+        return tech_stack.strip()
+    return 'TBD'
+
+
+def render_snapshot(snapshot):
+    if not isinstance(snapshot, dict) or not snapshot:
+        return '- Snapshot unavailable'
+
+    lines = []
+    repo_count = snapshot.get('owned_repo_count')
+    total_stars = snapshot.get('total_stars')
+    top_repo = snapshot.get('top_repo') or {}
+
+    if repo_count is not None:
+        lines.append(f'- Public repos: {repo_count}')
+    if total_stars is not None:
+        lines.append(f'- Total stars: {total_stars}')
+
+    if top_repo.get('name'):
+        highlight = f"- Highlight repo: **{top_repo['name']}**"
+        description = (top_repo.get('description') or '').strip()
+        if description:
+            highlight += f' - {description}'
+        url = (top_repo.get('html_url') or '').strip()
         if url:
-            line += f" ([link]({url}))"
-        rendered.append(line)
-    return '\n'.join(rendered)
+            highlight += f' ([link]({url}))'
+        lines.append(highlight)
 
-
-def render_links(links):
-    if not isinstance(links, dict) or not links:
-        return '- Add your public links here'
-    return '\n'.join([f"- **{k}**: {v}" for k, v in links.items() if v])
+    return '\n'.join(lines) if lines else '- Snapshot unavailable'
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--profile', required=True)
-    parser.add_argument('--projects', required=True)
-    parser.add_argument('--skills', required=True)
-    parser.add_argument('--writing', required=True)
-    parser.add_argument('--now', required=True)
+    parser.add_argument('--snapshot', required=False)
     parser.add_argument('--template', required=True)
     parser.add_argument('--output', required=True)
     args = parser.parse_args()
 
     profile = load_yaml_like(args.profile)
-    projects = load_json(args.projects)
-    skills = load_json(args.skills)
-    writing = load_json(args.writing)
-    now = load_text(args.now)
+    snapshot = load_json(args.snapshot) if args.snapshot else {}
     template = load_text(args.template)
 
+    summary_zh = profile.get('summary_zh', '').strip()
     replacements = {
         'name': profile.get('name', 'Your Name'),
-        'headline': profile.get('headline', 'Add a clear headline'),
+        'role': profile.get('role', '').strip(),
         'summary': profile.get('summary', 'Add a short summary.'),
-        'summary_zh_section': '',
-        'now': now,
-        'projects': render_list(projects, 'name', 'description'),
-        'skills': render_list(skills, 'name', 'description'),
-        'writing': render_list(writing, 'title', 'summary'),
-        'links': render_links(profile.get('links', {})),
-        'contact_note': profile.get('contact_note', ''),
+        'summary_zh_section': f'## 中文简介\n\n{summary_zh}' if summary_zh else '',
+        'tech_stack': render_tech_stack(profile.get('tech_stack', [])),
+        'snapshot': render_snapshot(snapshot),
     }
-
-    summary_zh = profile.get('summary_zh', '').strip()
-    if summary_zh:
-        replacements['summary_zh_section'] = f'## 中文简介\n\n{summary_zh}'
 
     content = template
     for key, value in replacements.items():
@@ -149,7 +152,7 @@ def main():
 
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(content + '\n', encoding='utf-8')
+    output.write_text(content.strip() + '\n', encoding='utf-8')
     print(f'Wrote {output}')
 
 

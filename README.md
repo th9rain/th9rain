@@ -1,37 +1,26 @@
 # Ray
 
-> Building practical AI workflows, reusable skills, and automation systems
+AI engineer at Li Auto.
 
-I build practical AI systems that turn recurring work into reusable workflows, tools,
-and operating pipelines. My focus is on making messy real-world work more structured,
-repeatable, and actually useful in production.
+I work on practical AI systems spanning LLM applications, agent systems,
+computer vision, data analysis, workflow automation, and internal knowledge platforms.
+I care about turning complex real-world requirements into reliable tools, pipelines,
+and intelligent systems that can actually run in production.
 
 ## 中文简介
 
-我专注于把重复工作沉淀为可复用的 AI 工作流、工具和自动化系统，
-重点是让真实世界里零散而繁琐的流程变得更结构化、更可复用，
-并且能真正落到生产环境里发挥价值。
+我是 Ray，目前在理想汽车做 AI 工程相关工作。
 
-## What I'm focused on
+主要关注 LLM 应用、Agent 系统、计算机视觉、数据分析、工作流自动化和知识平台。
+更感兴趣的是把复杂的业务问题抽象成稳定可复用的工具、流程和智能系统，
+并真正落到生产环境里。
 
-Currently focused on turning repeated work into reusable AI systems: workflow packaging, reusable skills, public project structure, and automation that makes ongoing work easier to maintain.
+## Tech
 
-## Selected Projects
+Python · LLM Applications · Agents · Computer Vision · Data Analysis · Automation · Backend Tooling · Knowledge Systems
 
-- **idea2web**: A reusable skill for turning a one-line product idea into a practical full-stack web app scaffold. ([link](https://github.com/th9rain/idea2web))
-- **GitHub Profile Maintainer**: A reusable system for keeping a GitHub profile aligned with real work, public identity, and ongoing projects. ([link](https://github.com/th9rain/github-profile-maintainer))
+## GitHub Snapshot
 
-## Reusable Skills & Systems
-
-- **idea2web**: Product-to-build workflow skill for generating practical full-stack web apps from a short prompt. ([link](https://github.com/th9rain/idea2web))
-- **github-profile-maintainer**: Maintain a GitHub profile README and supporting pages from structured source data. ([link](https://github.com/th9rain/github-profile-maintainer))
-
-## Writing
-
-- **Writing and notes are coming soon**: I'm still organizing what to publish publicly. This section will gradually collect practical write-ups around AI workflows, automation, and reusable systems.
-
-## Links
-
-- **GitHub**: https://github.com/th9rain
-
-GitHub is where I document the systems, skills, and projects I'm building over time.
+- Public repos: 4
+- Total stars: 4
+- Highlight repo: **ultrareview** - Recreate Claude Code鈥搒tyle multi-agent ultrareview with a self-hosted skill workflow. ([link](https://github.com/th9rain/ultrareview))

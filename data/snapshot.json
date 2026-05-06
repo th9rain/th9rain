@@ -1,0 +1,11 @@
+{
+  "username": "th9rain",
+  "owned_repo_count": 4,
+  "total_stars": 4,
+  "top_repo": {
+    "name": "ultrareview",
+    "description": "Recreate Claude Code-style multi-agent ultrareview with a self-hosted skill workflow.",
+    "html_url": "https://github.com/th9rain/ultrareview",
+    "stargazers_count": 2
+  }
+}
