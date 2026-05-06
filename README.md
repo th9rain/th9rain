@@ -1,5 +1,4 @@
 # Ray  
-# Yu Lei
 
 AI engineer at Li Auto.
 
