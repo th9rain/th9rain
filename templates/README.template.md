@@ -10,8 +10,6 @@
 
 {{featured_projects_section}}
 
-{{recent_repositories_section}}
-
 ## Tech
 
 {{tech_stack}}
