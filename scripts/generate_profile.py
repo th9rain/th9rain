@@ -90,7 +90,7 @@ def unquote_scalar(value):
 
 def render_tech_stack(tech_stack):
     if isinstance(tech_stack, list) and tech_stack:
-        return ' · '.join(
+        return ' | '.join(
             unquote_scalar(item) for item in tech_stack if isinstance(item, str) and unquote_scalar(item)
         )
     if isinstance(tech_stack, str) and tech_stack.strip():
@@ -110,7 +110,7 @@ def render_bullet_list(items):
 def render_inline_links(links):
     if isinstance(links, list):
         items = [unquote_scalar(item) for item in links if isinstance(item, str) and unquote_scalar(item)]
-        return ' · '.join(items)
+        return ' | '.join(items)
     if isinstance(links, str) and links.strip():
         return unquote_scalar(links)
     return ''
@@ -121,6 +121,22 @@ def render_section(title, body):
     if not body:
         return ''
     return f'## {title}\n\n{body}'
+
+
+def render_writing_section(intro, repo_link, featured_notes):
+    parts = []
+    intro = (intro or '').strip()
+    repo_link = unquote_scalar(repo_link) if isinstance(repo_link, str) else ''
+    featured = render_bullet_list(featured_notes)
+
+    if intro:
+        parts.append(intro)
+    if repo_link:
+        parts.append(f'Repository: {repo_link}')
+    if featured:
+        parts.append(f'Featured notes:\n{featured}')
+
+    return render_section('Reading Notes', '\n\n'.join(parts))
 
 
 def collapse_blank_lines(text):
@@ -141,13 +157,20 @@ def main():
     links_line = render_inline_links(profile.get('links', []))
     featured_projects = render_bullet_list(profile.get('featured_projects', []))
     current_focus = render_bullet_list(profile.get('current_focus', []))
+    writing_section = render_writing_section(
+        profile.get('writing_intro', ''),
+        profile.get('writing_repo', ''),
+        profile.get('featured_notes', []),
+    )
+
     replacements = {
         'name': profile.get('name', 'Your Name'),
         'role': profile.get('role', '').strip(),
         'links_line': links_line,
         'summary': profile.get('summary', 'Add a short summary.'),
-        'summary_zh_section': render_section('中文简介', summary_zh),
+        'summary_zh_section': render_section('Chinese Summary', summary_zh),
         'featured_projects_section': render_section('Selected Projects', featured_projects),
+        'writing_section': writing_section,
         'current_focus_section': render_section('Current Focus', current_focus),
         'tech_stack': render_tech_stack(profile.get('tech_stack', [])),
     }

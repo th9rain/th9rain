@@ -10,6 +10,8 @@
 
 {{featured_projects_section}}
 
+{{writing_section}}
+
 ## Tech
 
 {{tech_stack}}
